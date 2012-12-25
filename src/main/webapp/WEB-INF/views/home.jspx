@@ -1,0 +1,70 @@
+<jsp:root xmlns:fn="http://java.sun.com/jsp/jstl/functions" xmlns:jsp="http://java.sun.com/JSP/Page" version="2.0"
+          xmlns:spring="http://www.springframework.org/tags" xmlns:form="http://www.springframework.org/tags/form">
+
+    <jsp:directive.page contentType="text/html;charset=UTF-8" />
+    <jsp:output omit-xml-declaration="yes" />
+
+    <!-- Categories -->
+    <ul class="categories" data-bind="foreach: categories">
+        <li data-bind="text: $data,
+                   css: { selected: $data == $root.selectedCategory() },
+                   click: $root.selectCategory"></li>
+    </ul>
+
+    <!-- Books -->
+    <table class="books" data-bind="visible: filteredBooks().length > 0">
+    <thead>
+            <tr>
+                <th></th><th>Title</th><th>Author</th><th>Due Date</th><th></th>
+            </tr>
+        </thead>
+        <tbody data-bind="foreach: filteredBooks">
+        <tr data-bind="click: $root.selectBook">
+            <td>✔</td>
+            <td data-bind="text: title"></td>
+            <td data-bind="text: author"></td>
+            <td data-bind="text: dateFormatted()"></td>
+            <td><a href="#" data-bind="click: $root.removeBook">Remove</a></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <!-- Selected book -->
+    <div class="viewBook" data-bind="with: selectedBook">
+        <div class="bookInfo">
+            <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputTitle">Title:</label>
+                    <div class="controls">
+                        <input type="text" id="inputTitle" placeholder="Title" data-bind="value: title"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputAuthor">Author:</label>
+                    <div class="controls">
+                        <input type="text" id="inputAuthor" placeholder="Author" data-bind="value: author"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputDueDate">Due Date:</label>
+                    <div class="controls">
+                        <input type="text" id="inputDueDate" placeholder="Due Date" data-bind="datepicker: date"/>
+                    </div>
+                </div>
+                <div class="control-group">
+                    <label class="control-label" for="inputNote">Note:</label>
+                    <div class="controls">
+                        <textarea id="inputNote" rows="3"  placeholder="Note" data-bind="value: note"><!-- --></textarea>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <button class="btn btn-info" type="submit" data-bind="click: $root.addBook, visible: $root.selectedBook() == null">New</button>
+    <script type="text/javascript">
+        $(function() {
+            ko.applyBindings(new KnigachViewModel());
+        });
+    </script>
+
+</jsp:root>

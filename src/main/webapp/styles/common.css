@@ -1,0 +1,29 @@
+body { font-family: Helvetica, Arial}
+.categories { background-color: #bbb; list-style-type: none; padding: 0; margin: 0; border-radius: 7px;
+    background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #d6d6d6), color-stop(0.4, #c0c0c0), color-stop(1,#a4a4a4));
+    margin: 10px 0 16px 0;
+    font-size: 0px;
+}
+.categories li:hover { background-color: #ddd; }
+.categories li:first-child { border-left: none; border-radius: 7px 0 0 7px; }
+.categories li { font-size: 16px; font-weight: bold; display: inline-block; padding: 0.5em 1.5em; cursor: pointer; color: #444; text-shadow: #f7f7f7 0 1px 1px; border-left: 1px solid #ddd; border-right: 1px solid #888; }
+.categories li { *display: inline !important; } /* IE7 only */
+.categories .selected { background-color: #444 !important; color: white; text-shadow:none; border-right-color: #aaa; border-left: none; box-shadow:inset 1px 2px 6px #070707; }
+
+.books { width: 100%; table-layout:fixed; border-spacing: 0; }
+.books thead { background-color: #bbb; font-weight: bold; color: #444; text-shadow: #f7f7f7 0 1px 1px; }
+.books tbody tr:hover { cursor: pointer; background-color: #68c !important; color: White; }
+.books th, .books td { text-align:left; padding: 0.4em 0.3em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.books th { border-left: 1px solid #ddd; border-right: 1px solid #888; padding: 0.4em 0 0.3em 0.7em; }
+.books th:nth-child(1), .books td:nth-child(1) { width: 5%; text-align: center;}
+.books th:nth-child(2), .books td:nth-child(2) { width: 30%; }
+.books th:nth-child(3), .books td:nth-child(3) { width: 25%; }
+.books th:nth-child(4), .books td:nth-child(4) { width: 25%; }
+.books th:nth-child(5), .books td:nth-child(5) { width: 10%; text-align: center;}
+.books th:last-child { border-right: none }
+.books tr:nth-child(even) { background-color: #EEE; }
+
+.viewBook .bookInfo { background-color: #dae0e8; padding: 1em 1em 0.5em 1.25em; border-radius: 1em; }
+.viewBook .bookInfo h1 { margin-top: 0.2em; font-size: 130%; }
+.viewBook .bookInfo label { color: #777; font-weight: bold; min-width: 2.75em; text-align:right; display: inline-block; }
+.viewBook .message { padding: 0 1.25em; }
