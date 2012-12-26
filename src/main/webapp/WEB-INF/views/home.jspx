@@ -13,9 +13,9 @@
 
     <!-- Books -->
     <table class="books" data-bind="visible: filteredBooks().length > 0">
-    <thead>
+        <thead>
             <tr>
-                <th></th><th>Title</th><th>Author</th><th>Due Date</th><th></th>
+                <th></th><th>Title</th><th>Author</th><th>Due Date</th><th>Rating</th><th></th>
             </tr>
         </thead>
         <tbody data-bind="foreach: filteredBooks">
@@ -24,6 +24,7 @@
             <td data-bind="text: title"></td>
             <td data-bind="text: author"></td>
             <td data-bind="text: date.formatted"></td>
+            <td data-bind="rating: rating"></td>
             <td><a href="#" data-bind="click: $root.removeBook">Remove</a></td>
         </tr>
         </tbody>
@@ -33,6 +34,12 @@
     <div class="viewBook" data-bind="with: selectedBook">
         <div class="bookInfo">
             <form class="form-horizontal">
+                <div class="control-group">
+                    <label class="control-label" for="inputTitle">Rating:</label>
+                    <div class="controls">
+                        <span data-bind="rating: rating"/>
+                    </div>
+                </div>
                 <div class="control-group">
                     <label class="control-label" for="inputTitle">Title:</label>
                     <div class="controls">
@@ -62,7 +69,7 @@
     </div>
     <button class="btn btn-info" type="submit" data-bind="click: $root.addBook, visible: $root.selectedBook() == null">New</button>
     &#160;
-    <button class="btn btn-info" type="submit" data-bind="click: $root.save, text: $root.code() ? 'Update' : 'Save' "><!-- --></button>
+    <button class="btn btn-info" type="submit" data-bind="click: $root.save, visible: $root.selectedBook() == null, text: $root.code() ? 'Update' : 'Save' "><!-- --></button>
     <script type="text/javascript">
         $(function() {
             ko.applyBindings(new KnigachViewModel("${code}"));

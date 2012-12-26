@@ -16,10 +16,11 @@ body { font-family: Helvetica, Arial}
 .books th, .books td { text-align:left; padding: 0.4em 0.3em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .books th { border-left: 1px solid #ddd; border-right: 1px solid #888; padding: 0.4em 0 0.3em 0.7em; }
 .books th:nth-child(1), .books td:nth-child(1) { width: 5%; text-align: center;}
-.books th:nth-child(2), .books td:nth-child(2) { width: 30%; }
-.books th:nth-child(3), .books td:nth-child(3) { width: 25%; }
-.books th:nth-child(4), .books td:nth-child(4) { width: 25%; }
-.books th:nth-child(5), .books td:nth-child(5) { width: 10%; text-align: center;}
+.books th:nth-child(2), .books td:nth-child(2) { width: 25%; }
+.books th:nth-child(3), .books td:nth-child(3) { width: 20%; }
+.books th:nth-child(4), .books td:nth-child(4) { width: 20%; }
+.books th:nth-child(5), .books td:nth-child(5) { width: 15%; }
+.books th:nth-child(6), .books td:nth-child(6) { width: 10%; text-align: center;}
 .books th:last-child { border-right: none }
 .books tr:nth-child(even) { background-color: #EEE; }
 
@@ -27,3 +28,12 @@ body { font-family: Helvetica, Arial}
 .viewBook .bookInfo h1 { margin-top: 0.2em; font-size: 130%; }
 .viewBook .bookInfo label { color: #777; font-weight: bold; min-width: 2.75em; text-align:right; display: inline-block; }
 .viewBook .message { padding: 0 1.25em; }
+
+.rating table { background-color: #cde; padding: 1em; border-radius: 0.5em; }
+.rating table th { text-align:left; }
+.rating table th:last-child { min-width: 130px; }
+
+.starRating span { width:24px; height:24px; background-image: url(/resources/images/stars.png); display:inline-block; cursor: pointer; background-position: -24px 0; }
+.starRating span.chosen { background-position: 0 0; }
+.starRating:hover span { background-position: -24px 0; }
+.starRating:hover span.hoverChosen { background-position: 0 0; }

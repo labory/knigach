@@ -11,6 +11,8 @@
     <script src="${resourcesUrl}/scripts/json2.js" type="text/javascript"><!-- required for FF3 and Opera --></script>
     <!-- Knockout script -->
     <script src="${resourcesUrl}/scripts/knockout-2.2.0.js" type="text/javascript"><!-- required for FF3 and Opera --></script>
+    <!-- Knockout reusable bindings -->
+    <script src="${resourcesUrl}/scripts/knockout-reusable-bindings.js" type="text/javascript"><!-- required for FF3 and Opera --></script>
     <!-- URL routing script -->
     <script src="${resourcesUrl}/scripts/director.min.js" type="text/javascript"><!-- required for FF3 and Opera --></script>
     <!-- Moment script -->

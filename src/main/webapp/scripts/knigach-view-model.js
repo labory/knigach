@@ -1,43 +1,11 @@
-ko.bindingHandlers.datepicker = {
-    init: function(element, valueAccessor, allBindingsAccessor) {
-        //initialize datepicker with some optional options
-        var options = allBindingsAccessor().datepickerOptions || {};
-        $(element).datepicker(options);
-
-        //when a user changes the date, update the view model
-        ko.utils.registerEventHandler(element, "changeDate", function(event) {
-            var value = valueAccessor();
-            if (ko.isObservable(value)) {
-                value(event.date);
-            }
-        });
-    },
-    update: function(element, valueAccessor)   {
-        var widget = $(element).data("datepicker");
-        //when the view model is updated, update the widget
-        if (widget) {
-            widget.date = ko.utils.unwrapObservable(valueAccessor());
-
-            if (!widget.date) {
-                return;
-            }
-
-            if (typeof widget.date === 'string') {
-                widget.date = new Date(widget.date);
-            }
-
-            widget.setValue();
-        }
-    }
-};
-
-function Book(title, author, date, state, note) {
+function Book(title, author, date, state, note, rating) {
     var self = this;
     self.title = ko.observable(title);
     self.author = ko.observable(author);
     self.date = ko.observable(date);
     self.state = ko.observable(state);
     self.note = ko.observable(note);
+    self.rating = ko.observable(rating);
     self.date.formatted = ko.computed(function() {
         return moment(self.date()).format('MMMM Do YYYY');
     });
@@ -54,7 +22,9 @@ function KnigachViewModel(code) {
 
     if (self.code()) {
         $.getJSON("/books/" + self.code(), function (data) {
-            self.books($.map(data, function(book) { return new Book(book.title, book.author, book.date, book.state, book.note);}));
+            self.books($.map(data, function (book) {
+                return new Book(book.title, book.author, book.date, book.state, book.note, book.rating);
+            }));
         });
     }
 
