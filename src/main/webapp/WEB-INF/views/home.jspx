@@ -23,7 +23,7 @@
             <td>✔</td>
             <td data-bind="text: title"></td>
             <td data-bind="text: author"></td>
-            <td data-bind="text: dateFormatted()"></td>
+            <td data-bind="text: date.formatted"></td>
             <td><a href="#" data-bind="click: $root.removeBook">Remove</a></td>
         </tr>
         </tbody>
@@ -61,9 +61,11 @@
         </div>
     </div>
     <button class="btn btn-info" type="submit" data-bind="click: $root.addBook, visible: $root.selectedBook() == null">New</button>
+    &#160;
+    <button class="btn btn-info" type="submit" data-bind="click: $root.save, text: $root.code() ? 'Update' : 'Save' "><!-- --></button>
     <script type="text/javascript">
         $(function() {
-            ko.applyBindings(new KnigachViewModel());
+            ko.applyBindings(new KnigachViewModel("${code}"));
         });
     </script>
 

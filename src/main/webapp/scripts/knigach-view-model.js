@@ -38,25 +38,25 @@ function Book(title, author, date, state, note) {
     self.date = ko.observable(date);
     self.state = ko.observable(state);
     self.note = ko.observable(note);
-    self.dateFormatted = ko.computed(function() {
+    self.date.formatted = ko.computed(function() {
         return moment(self.date()).format('MMMM Do YYYY');
     });
 }
 
-function KnigachViewModel() {
+function KnigachViewModel(code) {
     var self = this;
 
     self.categories = ['All', 'Read', 'Done'];
-    self.selectedCategory = ko.observable();
+    self.selectedCategory = ko.observable('All');
     self.selectedBook = ko.observable();
+    self.code = ko.observable(code);
+    self.books = ko.observableArray([]);
 
-    self.books = ko.observableArray([
-        new Book("Little Women", "Louisa May Alcott", new Date(), "Read", ""),
-        new Book("Pride and Prejudice", "Jane Austen", new Date(), "Read", ""),
-        new Book("Agnes Grey", "Anne Bronte", new Date(), "Done", ""),
-        new Book("Lord Jim", "Joseph Conrad", new Date(), "Done", ""),
-        new Book("Robinson Crusoe",	"Daniel Defoe", new Date(), "Done", "")
-    ]);
+    if (self.code()) {
+        $.getJSON("/books/" + self.code(), function (data) {
+            self.books($.map(data, function(book) { return new Book(book.title, book.author, book.date, book.state, book.note);}));
+        });
+    }
 
     self.filteredBooks = ko.computed(function() {
         if (self.selectedBook() != null) {
@@ -82,6 +82,24 @@ function KnigachViewModel() {
         self.selectBook(book);
     };
 
+    self.save = function() {
+        console.log("save");
+        $.ajax({
+            type: 'POST',
+            url: '/save' + (self.code() ? '/' + self.code() : ''),
+            contentType: 'application/json; charset=utf-8',
+            data: ko.toJSON(self.books()),
+            success: function(data) {
+                if (!self.code()) {
+                    self.code(data);
+                    var parts = window.location.href.split('#');
+                    window.location = parts[0] + self.code() + '#' + parts[1];
+                }
+            },
+            dataType: 'text'
+        });
+    };
+
     self.removeBook = function(book) {
         self.books.remove(book);
     };
@@ -95,8 +113,6 @@ function KnigachViewModel() {
         self.selectBook(null);
         self.selectedCategory(category);
     };
-
-    self.selectCategory('All');
 
     // set up filter routing
     Router({ '/:filter': self.selectedCategory }).init();
