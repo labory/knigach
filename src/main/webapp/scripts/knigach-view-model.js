@@ -9,6 +9,9 @@ function Book(title, author, date, state, note, rating) {
     self.date.formatted = ko.computed(function() {
         return moment(self.date()).format('MMMM Do YYYY');
     });
+    self.toggle = function () {
+        self.state('Read' == self.state() ? 'Done' : 'Read');
+    };
 }
 
 function KnigachViewModel(code) {

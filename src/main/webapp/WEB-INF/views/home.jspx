@@ -19,13 +19,13 @@
             </tr>
         </thead>
         <tbody data-bind="foreach: filteredBooks">
-        <tr data-bind="click: $root.selectBook">
-            <td>✔</td>
+        <tr data-bind="event: { dblclick: $root.selectBook}">
+            <td data-bind="event: { click: toggle}, style: {color: state() == 'Done' ? '#00b050' : '#c0c0c0'}">✔</td>
             <td data-bind="text: title"></td>
             <td data-bind="text: author"></td>
             <td data-bind="text: date.formatted"></td>
             <td data-bind="rating: rating"></td>
-            <td><a href="#" data-bind="click: $root.removeBook">Remove</a></td>
+            <td><a href="#" data-bind="click: $root.removeBook">✖</a></td>
         </tr>
         </tbody>
     </table>

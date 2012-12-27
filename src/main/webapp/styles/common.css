@@ -12,7 +12,6 @@ body { font-family: Helvetica, Arial}
 
 .books { width: 100%; table-layout:fixed; border-spacing: 0; }
 .books thead { background-color: #bbb; font-weight: bold; color: #444; text-shadow: #f7f7f7 0 1px 1px; }
-.books tbody tr:hover { cursor: pointer; background-color: #68c !important; color: White; }
 .books th, .books td { text-align:left; padding: 0.4em 0.3em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 .books th { border-left: 1px solid #ddd; border-right: 1px solid #888; padding: 0.4em 0 0.3em 0.7em; }
 .books th:nth-child(1), .books td:nth-child(1) { width: 5%; text-align: center;}
@@ -21,6 +20,10 @@ body { font-family: Helvetica, Arial}
 .books th:nth-child(4), .books td:nth-child(4) { width: 20%; }
 .books th:nth-child(5), .books td:nth-child(5) { width: 15%; }
 .books th:nth-child(6), .books td:nth-child(6) { width: 10%; text-align: center;}
+.books td:nth-child(1) {font-size: 20px; font-weight: bold;}
+.books td:nth-child(1):hover {cursor: pointer;}
+.books td:nth-child(6) a {font-size: 22px; text-decoration: none;}
+.books td:nth-child(6) a:hover {font-size: 30px;}
 .books th:last-child { border-right: none }
 .books tr:nth-child(even) { background-color: #EEE; }
 
